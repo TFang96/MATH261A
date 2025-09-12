@@ -15,3 +15,10 @@ compensation$Total.Salary <- as.numeric(gsub(",", "", compensation$Total.Salary)
 model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
 
 summary(model)
+
+#plot the data
+plot(compensation$Total.Salary, compensation$Total.Benefits, xlab = "Total Compensation", ylab = "Total Benefits", 
+     main = "Total Benefits vs. Total Compensation")
+
+#overlay regression line
+abline(model, col = "red", lwd=2)
