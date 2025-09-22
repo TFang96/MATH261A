@@ -1,0 +1,44 @@
+---
+title: "How Your Salary Impacts Benefits You Get"
+author: "Ziheng (Tony) Fang"
+format: pdf
+editor: visual
+---
+
+## Abstract
+
+This study looks into how an employee’s total benefits received is related to the employee’s total salary. Data regarding the total compensation of different employees was studied. The objective was the identify any correlation between employees’ salary and the benefits that they received. Methods utilized included building a linear regression model as well as utilizing a scatterplot. Results concluded that the amount of benefits an employee receives is strongly correlated to the total salary they receive.
+
+## Introduction
+
+The amount of compensation employees obtain is crucial when it comes to workplace dynamics as well as employee retention. How well an employee is compensated as is directly related to how satisfied they are with their job. Compensation is not just about the base salary an employee obtains. Benefits, such as health insurance, retirement, and other benefits are also a major factor when it comes to the compensation amount each employee receives. The total salary an employee receives clearly shows how much an employee’s labor is valued, understanding how it relates to the benefits they receive would provide another insight into pay structures.
+
+Understanding the relationship between total salary and total benefits would reveal how corporations allocate resources across employees of different roles. If we can see that benefits and salary are not correlated with each other, we can conclude that corporations give benefits to employees equally, regardless of their level or role in the organization. In contrast, if the amount of benefits an employee obtains is dependent on the total salary they receive and there is a positive correlation, this would point to the fact that organizations not only give more value to employees of certain levels or roles through their salary, but the recognition is reflected in their benefits as well. Understanding the relation would be very helpful for employees evaluating offers to see how well they are actually being compensated.
+
+When deciding on a job offer, many prospective employees focus primarily on the salary as the key factor in evaluating the offer. Most job posts would list a range for the salary, while completely leaving out details on benefits received. Little emphasis is placed on how the benefits an employee receives are correlated to the salary they receive. This paper addresses this gap by providing statistical insight on whether employees who receive a higher salary also receive more benefits.
+
+To help us look into the question, we pulled a dataset, Employee Compensation, from DataSF. The dataset provides details on different salaries adding up to a total salary and different benefits adding up to total benefits on numerous amounts of employees for the City of San Francisco.
+
+## Data
+
+The dataset, Employee Compensation, from the Open Data Portal on municipal website of San Francisco provides data on the salary and benefits of city employees since the fiscal year of 2013. There is a total of 1.05 million data points in this dataset, where each row reflects a city employee. The data is obtained through the San Francisco Controllers Office where they have a database of all salary and benefits of city employees.
+
+## Methods
+
+A linear regression model was created based on the dataset using the lm() function in R. The total salary each employee received was considered as the independent variable (X), and the dependent variable (Y) was the total benefits each employee received. The model summary showed a slope of 0.269 for the total salary with a p-value of less than $2 * 10^{-16}$. The numbers point to a rejection of our null hypothesis with there being no correlation between the total salary and benefits amount received, however, a limitation we have is that we cannot show a causal relationship between the total salary amount and total benefits received. For example, the department a city employee works in could simply pay higher and give more benefits than another. In that sense, the benefits received is not dependent on the total salary received, but is directly related to the department the employee works in.
+
+## Results
+
+A regression model was fitted utilizing the total salary as the independent variable (X) and the total benefits as the dependent/response variable (Y) using the lm() function in R.
+
+$$
+Y_{i} = \beta_{0} + \beta_{1}X_{i} + \epsilon_{i}
+$$
+
+Here, $\beta_{0}$ is the intercept, $\beta_{1}$ is the slope, and $\epsilon_{i}$ is the error residual.
+
+The model showed a slope of 0.269 for the salary variable and a p-value of less than $2 * 10^{-16}$. Thus, based on the model, we reject the null hypothesis and conclude that the amount of benefits an employee receives is positively correlated with the total salary they receive. Our $R^2$ value of 0.7594, also indicates that total salary explains a lot of the variability in the total compensation received. For every dollar of salary an employee gets, they get about \$0.27 in benefits.
+
+![](Benefits vs. Compensation Plot.png){fig-align="center"}
+
+However, despite positive correlation between salary and benefits, we cannot conclude causality.
