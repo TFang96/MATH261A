@@ -57,7 +57,7 @@ compensation %>%
 
 ## Methods
 
-A linear regression model was fitted based on the dataset using the lm() function in R [@RLanguage].
+A linear regression model was fitted based on the dataset using the lm() function in R [@RLanguage]. A scatterplot depicting the independent and dependent variables was also generated using the ggplot package [@ggplot2].
 
 $$
 Y_{i} = \beta_{0} + \beta_{1}X_{i} + \epsilon_{i}
