@@ -24,7 +24,36 @@ The Data section gives further details on the data that was utilized, statistica
 
 ## Data
 
-The dataset, Employee Compensation [@SF_Compensation_Data], from the Open Data Portal on municipal website of San Francisco provides data on the salary and benefits of city employees since the fiscal year of 2013. There is a total of 1.05 million data points in this dataset, where each row reflects a city employee. The data is obtained through the San Francisco Controllers Office where they have a database of all salary and benefits of city employees.
+The dataset we utilized, Employee Compensation [@SF_Compensation_Data], from the Open Data Portal on municipal website of San Francisco provides data on the salary and benefits of city employees since the fiscal year of 2013. There are a total of 1.05 million data points in this dataset, where each row reflects a city employee. Variables that were relevant to our study included Total.Salary, which was each employee's annual salary and Total.Benefits, which was each employee's benefits in monetary value. To allow numerical computations, all commas were removed from the data. The data is obtained through the San Francisco Controllers Office where they have a database of all salary and benefits of city employees.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(dplyr)
+library(knitr)
+compensation <- read.csv("Employee_Compensation_20250829.csv")
+#remove na
+compensation <- na.omit(compensation)
+#drop rows with missing values
+compensation <- compensation[complete.cases(compensation[, c("Total.Benefits", "Total.Compensation")]), ]
+#deal with commas (e.g. 1,000 = 1000)
+compensation$Total.Benefits <- as.numeric(gsub(",", "", compensation$Total.Benefits))
+compensation$Total.Salary <- as.numeric(gsub(",", "", compensation$Total.Salary))
+compensation %>%
+  summarise(
+    Mean_Salary   = mean(Total.Salary, na.rm = TRUE),
+    Salary_SD     = sd(Total.Salary, na.rm = TRUE),
+    Min_Salary    = min(Total.Salary, na.rm = TRUE),
+    Max_Salary    = max(Total.Salary, na.rm = TRUE),
+    Mean_Benefits = mean(Total.Benefits, na.rm = TRUE),
+    Benefits_SD   = sd(Total.Benefits, na.rm = TRUE),
+    Min_Benefits  = min(Total.Benefits, na.rm = TRUE),
+    Max_Benefits  = max(Total.Benefits, na.rm = TRUE)
+  ) %>%
+  t() %>%
+  kable(col.names = c("Value"))
+```
 
 ## Methods
 

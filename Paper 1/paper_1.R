@@ -1,4 +1,6 @@
 library(ggplot2)
+library(dplyr)
+library(knitr)
 
 
 ## Read in the CSV
@@ -23,3 +25,18 @@ plot(compensation$Total.Salary, compensation$Total.Benefits, xlab = "Total Compe
 
 #overlay regression line
 abline(model, col = "red", lwd=2)
+
+## print data summary
+compensation %>%
+  summarise(
+    Mean_Salary   = mean(Total.Salary, na.rm = TRUE),
+    Salary_SD     = sd(Total.Salary, na.rm = TRUE),
+    Min_Salary    = min(Total.Salary, na.rm = TRUE),
+    Max_Salary    = max(Total.Salary, na.rm = TRUE),
+    Mean_Benefits = mean(Total.Benefits, na.rm = TRUE),
+    Benefits_SD   = sd(Total.Benefits, na.rm = TRUE),
+    Min_Benefits  = min(Total.Benefits, na.rm = TRUE),
+    Max_Benefits  = max(Total.Benefits, na.rm = TRUE)
+  ) %>%
+  t() %>%
+  kable(col.names = c("Value"))
