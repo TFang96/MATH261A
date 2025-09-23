@@ -63,9 +63,9 @@ $$
 Y_{i} = \beta_{0} + \beta_{1}X_{i} + \epsilon_{i}
 $$
 
-In our model, the total salary that each employee, i, received is represented as the independent variable (X), and the dependent variable (Y) was the total benefits each employee received.
+In our model, the total salary that each employee, i, received is represented as the independent variable (X), and the dependent variable (Y) was the total benefits each employee received.$\beta_0$ is the intercept, $\beta_1$ is the slope, and $\epsilon_i$ is the residual error.
 
-Analyzing the model would show us whether or not there is a correlation between the dependent and independent variables. However, we are not able to conclude causation between the two variables. For example, the department a city employee works in could simply pay higher and give more benefits than another. In that sense, the benefits received is not dependent on the total salary received, but is directly related to the department the employee works in. Another example would include that some city workers are unionized, which would increase both their salary and benefits. In that sense, the benefits they receive is not caused by their salary, but their union membership. Furthermore, our dataset only contains a employees of the City of San Francisco. Trends may very likely differ if we look at data in another city or a private organization, a confounding variable.
+Analyzing the model and the estimated slope would show us whether or not there is a correlation between the dependent and independent variables. A limitation we have, however is that we are not able to conclude causation between the two variables. For example, the department a that city employee works in could simply pay higher and give more benefits than other departments. In that sense, the benefits received is not caused by the total salary received, but is caused by the department the employee works in. Another example would include that some city workers are unionized, which would increase both their salary and benefits. In that sense, the benefits they receive is not caused by their salary, but their union membership. Furthermore, our dataset only contains a employees of the City of San Francisco. Trends may very likely differ if we look at data in another city or a private organization, a confounding variable.
 
 ## Results
 
