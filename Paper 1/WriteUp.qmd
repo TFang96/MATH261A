@@ -73,7 +73,7 @@ Within our regression model, $\beta_{0}$ was the intercept, $\beta_{1}$ was the 
 
 The model estimated a slope. $b_1$ of 0.269 for the salary variable. Our null hypothesis concluded no relationship between the dependent variable Y, total benefits, and independent variable X, total salary. Obtaining p-value of less than $2 * 10^{-16}$, we reject the null hypothesis on a .95 confidence interval and conclude there is a relationship between the two variables. Thus, based on the the rejection of the null hypothesis and the estimated slope we conclude that the amount of benefits an employee receives is positively correlated with the total salary they receive. Our $R^2$ value of 0.7594, also indicates that total salary explains a lot of the variability in the total compensation received. For every dollar of salary an employee gets, they get about \$0.27 in benefits.
 
-![Fig 1: Total Benefits vs. Total Compensation for City of San Francisco Employees](Benefits%20vs.%20Compensation%20Plot.png){fig-align="center"}
+![Total Benefits vs. Total Compensation for City of San Francisco Employees](Benefits%20vs.%20Compensation%20Plot.png){fig-align="center"}
 
 ## Discussion
 
