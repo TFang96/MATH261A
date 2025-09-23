@@ -8,7 +8,7 @@ bibliography: references.bib
 
 ## Abstract
 
-This study looks into how an employee’s total benefits received is related to the employee’s total salary. Data regarding the total compensation of different employees was studied. The objective was the identify any correlation between employees’ salary and the benefits that they received. Methods utilized included building a linear regression model as well as utilizing a scatterplot. Results concluded that the amount of benefits an employee receives is strongly correlated to the total salary they receive.
+This study looks into how an employee’s total benefits received is related to the employee’s total salary. Data regarding the total compensation of different employees was studied using employee data from the City of San Francisco. The objective was the identify any correlation between employees’ salary and the benefits that they received. Methods utilized included building a linear regression model as well as utilizing a scatterplot. Results concluded that the amount of benefits an employee receives is strongly correlated to the total salary they receive.
 
 ## Introduction
 
