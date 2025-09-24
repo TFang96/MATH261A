@@ -1,6 +1,7 @@
 ---
 title: "How Your Salary Impacts Benefits You Get"
 author: "Ziheng (Tony) Fang"
+thanks: "Project GitHub Repository: https://github.com/TFang96/MATH261A"
 format: pdf
 editor: visual
 bibliography: references.bib
