@@ -68,13 +68,29 @@ In our model, the total salary that each employee, i, received is represented as
 
 Analyzing the model and the estimated slope would show us whether or not there is a correlation between the dependent and independent variables. A limitation we have, however is that we are not able to conclude causation between the two variables. For example, the department a that city employee works in could simply pay higher and give more benefits than other departments. In that sense, the benefits received is not caused by the total salary received, but is caused by the department the employee works in. Another example would include that some city workers are unionized, which would increase both their salary and benefits. In that sense, the benefits they receive is not caused by their salary, but their union membership. Furthermore, our dataset only contains a employees of the City of San Francisco. Trends may very likely differ if we look at data in another city or a private organization, a confounding variable.
 
+We also looked into the assumptions of the linear regression model whether or not the relationship we have between our dependent and independent variables is linear and the residuals have constant variance, are independent, and are normally distributed.
+
 ## Results
 
-Within our regression model, $\beta_{0}$ was the intercept, $\beta_{1}$ was the slope, and $\epsilon_{i}$ was the error residual. $Y_{i}$ was the independent variable representing the amount of benefits received by each city employee i. $X_{i}$ was the dependent variable representing the total amount of salary employee i received.
+Within our regression model, $\beta_{0}$ was the intercept, $\beta_{1}$ was the slope, and $\epsilon_{i}$ was the error residual. $Y_{i}$ was the dependent variable representing the amount of benefits received by each city employee i. $X_{i}$ was the independent variable representing the total amount of salary employee i received.
 
-The model estimated a slope. $b_1$ of 0.269 for the salary variable. Our null hypothesis concluded no relationship between the dependent variable Y, total benefits, and independent variable X, total salary. Obtaining p-value of less than $2 * 10^{-16}$, we reject the null hypothesis on a .95 confidence interval and conclude there is a relationship between the two variables. Thus, based on the the rejection of the null hypothesis and the estimated slope we conclude that the amount of benefits an employee receives is positively correlated with the total salary they receive. Our $R^2$ value of 0.7594, also indicates that total salary explains a lot of the variability in the total compensation received. For every dollar of salary an employee gets, they get about \$0.27 in benefits.
+The model estimated a slope. $b_1$ of 0.269 for the salary variable. Our null hypothesis concluded no relationship between the dependent variable Y, total benefits, and independent variable X, total salary. Obtaining p-value of less than $2 * 10^{-16}$, based on this model, we reject the null hypothesis on a .95 confidence interval and conclude there is a relationship between the two variables. Thus, from the rejection of the null hypothesis and the estimated slope we conclude that the amount of benefits an employee receives is positively correlated with the total salary they receive. Our $R^2$ value of 0.7594, also indicates that total salary explains a lot of the variability in the total compensation received. For every dollar of salary an employee gets, they get about \$0.27 in benefits.
 
-![Total Benefits vs. Total Compensation for City of San Francisco Employees](Benefits%20vs.%20Compensation%20Plot.png){fig-align="center"}
+![Total Benefits vs. Total Compensation for City of San Francisco Employees.](Benefits%20vs.%20Compensation%20Plot.png){fig-align="center"}
+
+To analyze whether or not our model follows the assumption that the regression function is linear and the residuals have equal variance, are independent, and are normally distributed, we examine the residual vs. predictor plot, residual vs. time plot, and the QQ plot.
+
+![Residual vs. Salary (Predictor)](Residuals vs. Total Salary.png)
+
+Upon examining the residual vs predictor plot, we can see a funnel shape as the salary increases. This shows that there is a higher variance among higher salaries and that the residuals are not of constant variance. However, there is no "u-shape" or "wave" that would indicate a non-linear relationship.
+
+![Residual vs. Time (Year)](Residuals vs. Time.png)
+
+Upon examining a plot of the residuals versus the time, we can see that the residuals vary a significant amount. For example, the variation is higher between 2014 to 2016 as compared to between 2022 and 2024. This indicates a non-constant variance among the residuals.
+
+![Q-Q Plot](QQPlot.png)
+
+Upon examining the Q-Q, or Quantile-Quantile, plot, we can clearly see that the distribution of residuals has heavier tails on the right and left tails. Thus, we conclude our residuals are not normally distributed. However, due to our large sample size of 1053380, normality would not have much of an effect.
 
 ## Discussion
 
@@ -84,6 +100,8 @@ Analyzing our model, we found an estimated slope of 0.269 for our total annual s
 
 However, this research has limitations in the sense of causal relationships. Although we can clearly see that total benefits an employee receives is positively correlated with the total annual salary they receive, we cannot say a high salary "causes" a high amount of benefits. As mentioned above, a particular department an employee works for could have significantly more funding. Should an employee work for that particular department, they would have higher annual salary and benefits received. Many city employees are members of unions. Unions would generally negotiate better pay and benefits for their members. Lastly, our data focuses on employees who work for the city of San Francisco. Trends that we see here may not be applicable for employees who work for other cities or non-governmental workers.
 
-To make our findings more conclusive, instead of using a simple linear regression model where we only consider one predictor variable, the total salary received, we could utilize a multiple linear regression model where we have multiple predictor variables. Variables we mentioned above (e.g. union membership and department) could be one-hot encoded and included as additional predictor variables. The data on the estimated slopes of these predictor variables could be used to determine which predictor variable is more highly correlated with our response variable, the total benefits received. In addition, we could look into data on compensation from other cities or private organizations to get a sample that is more representative and is not limited to employees for the city of San Francisco.
+Furthermore, by looking into the residual vs. predictor, residual vs. time, and Q-Q plots, we can conclude that our assumptions on equal variance, independence, and normality on the residuals have all been violated. Due to a large sample size, the violation on normality would not have a significant effect. However, non-equal variance and dependent residuals could make our confidence intervals and standard errors off, requiring us to take our hypothesis test with a grain of salt. We could have very well falsely rejected our null hypothesis.
+
+To make our findings more conclusive, instead of using a simple linear regression model where we only consider one predictor variable, the total salary received, we could utilize a multiple linear regression model where we have multiple predictor variables. Variables we mentioned above (e.g. union membership and department) could be one-hot encoded and included as additional predictor variables. The data on the estimated slopes of these predictor variables could be used to determine which predictor variable is more highly correlated with our response variable, the total benefits received. In addition, we could look into data on compensation from other cities or private organizations to get a sample that is more representative and is not limited to employees for the city of San Francisco. To address non-constant variances among the residuals and them not being independent, we could introduce variable transformations in order to make our hypothesis tests more reliable.
 
 ## References

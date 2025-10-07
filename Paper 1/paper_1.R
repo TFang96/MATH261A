@@ -40,3 +40,22 @@ compensation %>%
   ) %>%
   t() %>%
   kable(col.names = c("Value"))
+
+#residual vs. predictor plot
+plot(compensation$Total.Salary, residuals(model),
+     xlab = "Predictor: Total Salary",
+     ylab = "Residuals",
+     main = "Residuals vs. Total Salary")
+abline(h = 0, col ="red")
+
+#residual vs. time plot
+plot(compensation$Year, residuals(model),
+     type = "b",
+     xlab = "Time: Year",
+     ylab = "Residuals",
+     main = "Residuals vs. Time")
+abline(h = 0, col="red")
+
+#QQ Plot
+qqnorm(residuals(model))
+qqline(residuals(model), col = "red")
