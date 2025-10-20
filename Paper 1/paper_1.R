@@ -12,6 +12,7 @@ compensation <- compensation[complete.cases(compensation[, c("Total.Benefits", "
 #deal with commas (e.g. 1,000 = 1000)
 compensation$Total.Benefits <- as.numeric(gsub(",", "", compensation$Total.Benefits))
 compensation$Total.Salary <- as.numeric(gsub(",", "", compensation$Total.Salary))
+compensation <- subset(compensation, Year==2024) # focus on year 2024
 
 ## build regression model for total compensation as the predictor variable for total benefits
 model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
