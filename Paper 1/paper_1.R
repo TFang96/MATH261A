@@ -21,8 +21,8 @@ model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
 summary(model)
 
 #plot the data
-plot(compensation$Total.Salary, compensation$Total.Benefits, xlab = "Total Compensation", ylab = "Total Benefits", 
-     main = "Total Benefits vs. Total Compensation")
+plot(compensation$Total.Salary, compensation$Total.Benefits, xlab = "Total Salary", ylab = "Total Benefits", 
+     main = "Total Benefits vs. Total Salary")
 
 #overlay regression line
 abline(model, col = "red", lwd=2)
@@ -48,14 +48,6 @@ plot(compensation$Total.Salary, residuals(model),
      ylab = "Residuals",
      main = "Residuals vs. Total Salary")
 abline(h = 0, col ="red")
-
-#residual vs. time plot
-plot(compensation$Year, residuals(model),
-     type = "b",
-     xlab = "Time: Year",
-     ylab = "Residuals",
-     main = "Residuals vs. Time")
-abline(h = 0, col="red")
 
 #QQ Plot
 qqnorm(residuals(model))
