@@ -31,6 +31,7 @@ The dataset we utilized, Employee Compensation [@SF_Compensation_Data], provides
 #| echo: false
 #| message: false
 #| warning: false
+#| tbl-cap: "Summary Statistics for Total Salary and Total Benefits (Year 2024)"
 library(dplyr)
 library(knitr)
 compensation <- read.csv("Employee_Compensation_20250829.csv")
@@ -65,27 +66,68 @@ $$
 Y_{i} = \beta_{0} + \beta_{1}X_{i} + \epsilon_{i}
 $$
 
-In our regression model above, the total salary that each employee, i, received is represented as the predictor variable (X), and the response variable (Y) was the total benefits that individual employee received. $\beta_0$ is the intercept, $\beta_1$ is the slope, and $\epsilon_i$ is the residual error.
+In our regression model above, the total salary that each employee, i, received is represented as the predictor variable (X), and the response variable (Y) was the total benefits that individual employee received. $\beta_0$ is the intercept, which is the expected value for the benefits amount when the salary is 0, $\beta_1$ is the slope, or expected change in benefits for every increase in cent of salary, and $\epsilon_i$ is the residual error.
 
 Analyzing the model and the estimated slope would show us whether or not there is a correlation between the response and predictor variables. A limitation we have, however is that we are not able to conclude causation between the two variables. For example, the department a that city employee works in could simply pay higher and give more benefits than other departments. In that sense, the benefits received is not caused by the total salary received, but is caused by the department the employee works in. Another example would include that some city workers are unionized, which would increase their benefits. In that sense, the benefits they receive is not caused by their salary, but by their union membership. Furthermore, our dataset only contains a employees of the City of San Francisco. Trends may very likely differ if we look at data in another city or a private organization, a confounding variable.
 
-We also looked into the assumptions of the linear regression model on whether or not the relationship we have between our dependent and independent variables is linear and whether or not the residuals have constant variance, are independent, and are normally distributed.
+For our study, we also looked into the assumptions of a standard linear regression model where the errors have constant variance and are independent of one another. In our situation, the normality of errors would not have much of an effect as our sample size is significantly large. In addition to the assumptions on the errors, we also looked into whether or not the response variable has a linear relationship with the predictor variable.
 
 ## Results
 
-In our hypothesis test that we ran, we have a null hypothesis, $H_{0}$, assuming that $\beta_{1}$, the slope, was equal to 0, indicating no relationship between the salary earned and the total benefits received. Our alternative hypothesis, $H_{a}$, would conclude that $\beta_{1}$, the slope, was not equal to 0, indicating that the total benefits received was related to the salary of an employee. To make a conclusion, we ran a t-test on the slope parameter in our regression model with a test size of 0.05. The test statistic that we utilized was our t-value: $$t = \frac{b_{1} - 0}{SE(b_{1})}$$
+We ran a t-test for our hypothesis test, we have a null hypothesis, $H_{0}$, assuming that $\beta_{1}$, the slope, was equal to 0, indicating no relationship between the salary earned and the total benefits received. Our alternative hypothesis, $H_{a}$, would conclude that $\beta_{1}$, the slope, was not equal to 0, indicating that the total benefits received was related to the salary of an employee. To make a conclusion, we examined the p-value and compared it with our test size of 0.05. The test statistic that we utilized was our t-value: $$t = \frac{b_{1} - 0}{SE(b_{1})}$$
 
 The model estimated a slope, $b_1$, of 0.2337 for the salary variable with p-value of less than $2 * 10^{-16}$. Based on the p-value being less than our test size of 0.05, we reject the null hypothesis and conclude there is a relationship between the two variables. Our $R^2$ value of 0.7086 also indicates that total salary explains a lot of the variability in the total benefits received. The estimated slope, $b_{1}$ shows that for every extra dollar of salary an employee gets, they get about \$0.27 in benefits.
 
-![Figure 1: Total Benefits vs. Total Compensation for City of San Francisco Employees.](Benefits vs. Salary.png)
+```{r}
+#| echo: false
+#| fig-cap: "Total Benefits vs. Total Compensation for City of San Francisco Employees in 2024"
+#| fig-width: 7
+#| fig-height: 5
+
+model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
+
+
+#plot the data
+plot(compensation$Total.Salary, compensation$Total.Benefits, xlab = "Total Salary", ylab = "Total Benefits", 
+     main = "Total Benefits vs. Total Salary")
+
+#overlay regression line
+abline(model, col = "red", lwd=2)
+```
 
 To analyze whether or not our model follows the assumption that the regression function is linear and the residuals have equal variance and are normally distributed, we examine the residual vs. predictor plot and the QQ plot. Given that we have individual and unrelated employees from the year of 2024, we can conclude that the residuals are independent from each other.
 
-![Figure 2: Residual vs. Salary (Predictor), Heteroscedasticity indicates non-constant variance among residuals.](Residual vs. Predictor.png)
+```{r}
+#| echo: false
+#| fig-cap: "Residuals vs. Total Salary (Predictor), Heteroscedasticity inidicates non-constant variances among residuals"
+#| fig-width: 7
+#| fig-height: 5
+
+model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
+
+
+# Residual vs. Predictor Plot
+plot(compensation$Total.Salary, residuals(model), 
+     xlab = "Predictor: Total Salary",
+     ylab = "Residuals",
+     main = "Residuals vs. Total Salary")
+abline(h = 0, col = "red")
+```
 
 Upon examining the residual vs predictor plot, we can see a funnel shape as the salary increases. This shows that there is a higher variance among higher salaries and that the residuals are not of constant variance. However, there is no "u-shape" or "wave" that would indicate a non-linear relationship.
 
-![Figure 3: Q-Q Plot, Compares Residuals To A Normal Distribution, Heavy Tails Reflect Not Normally Distributed](QQPlot.png)
+```{r}
+#| echo: false
+#| fig-cap: "QQ-Plot, Compares Errors To A Normal Distribution, Heavy Tails Reflect Not Normally Distributed"
+#| fig-width: 7
+#| fig-height: 5
+
+model <- lm(Total.Benefits ~ Total.Salary, data=compensation)
+
+
+qqnorm(residuals(model))
+qqline(residuals(model), col = "red")
+```
 
 Upon examining the Q-Q, or Quantile-Quantile, plot, we can clearly see that the distribution of residuals has heavier tails on both the right and left tails. Thus, we conclude our residuals are not normally distributed. However, due to our large sample size of 86698, normality would not have much of an effect.
 
