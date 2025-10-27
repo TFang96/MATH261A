@@ -2,7 +2,7 @@
 Name: Ziheng (Tony) Fang
 
 Paper 1 - Contains Files for First Project 
-- Code File: paper_1.R
+- Code File: paper_1.R (also inside quarto file)
 - All plots are generated from within the Quarto file, WriteUp.qmd, paper_1.R is only used for reference on the model fitted and work done. 
 - Quarto File: WriteUp.qmd
 - references.bib: File containing the citations. 
